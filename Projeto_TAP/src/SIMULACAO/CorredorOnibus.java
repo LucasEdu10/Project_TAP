@@ -12,9 +12,9 @@ public class CorredorOnibus {
 		pista.adicionarParada(parada1);
 		pista.adicionarParada(parada2);
 		pista.adicionarParada(parada3);
-
-		Onibus B1 = new Onibus("Micro", 0, pista, parada1);
-		Onibus B2 = new Onibus("Medio", 0, pista, parada1);
+		
+		Onibus B1 = new Onibus("Micro", null, pista, parada1);
+		Onibus B2 = new Onibus("Medio", null, pista, parada1);
 
 		B1.setParada(parada1);
 		B2.setParada(parada2);
@@ -23,6 +23,16 @@ public class CorredorOnibus {
 		Thread thread2 = new Thread(B2);
 		thread1.start();
 		thread2.start();
+		
+		try {
+			thread1.join(200);
+			thread2.join(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("========= PROGRAMA FINALIZADO =========");
+		
 	}
 
 }

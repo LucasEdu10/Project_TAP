@@ -6,6 +6,8 @@ public class Parada {
 	String tipoParada;
 	private int id;
 
+	public Parada() {}
+	
 	public Parada(int id, int passageiros, String tipoParada) {
 		this.id = id;
 		this.passageiros = passageiros;

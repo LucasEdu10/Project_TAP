@@ -2,13 +2,13 @@ package SIMULACAO;
 
 public class Onibus implements Runnable {
 
-	private int qPessoas;
+	private Parada qPessoas;
 	private String tipo;
 	int temp;
 	private Parada parada;
 	Pista pista;
 
-	public Onibus(String tipo, int qPessoas, Pista pista, Parada parada) {
+	public Onibus(String tipo, Parada qPessoas, Pista pista, Parada parada) {
 		this.tipo = tipo;
 		this.qPessoas = qPessoas;
 		this.pista = pista;
@@ -35,26 +35,17 @@ public class Onibus implements Runnable {
 		this.tipo = tipo;
 	}
 
-	public int getqPessoas() {
+	public Parada getqPessoas() {
 		return qPessoas;
+	}
+	
+	public void setqPessoas(Parada qPessoas) {
+		this.qPessoas = qPessoas;
 	}
 
 	@Override
 	public void run() {
-		if(this.parada.getId() == 0 ) {
-			for(int i=0; i< this.pista.paradas.size(); i++) {
-				pista.anda(true);
-				System.out.println(tipo + " Onibus partindo...");
-			}
-			pista.para(false);
-		}else {
-			for(int i=0; i< this.pista.paradas.size(); i++) {
-				pista.para(true);
-				System.out.println(tipo + " Onibus partindo...");
-			}
-			pista.para(false);
-		}
-		/*System.out.println(tipo + " Onibus partindo...");
+		System.out.println(tipo + " Onibus partindo...");
 		for (int p = this.parada.getId(); p < this.pista.paradas.size()-1; p++) {
 			this.parada.setId(p);
 			Parada proximaParada = pista.proximaParada(this.parada);
@@ -62,8 +53,10 @@ public class Onibus implements Runnable {
 				proximaParada.getId();
 				System.out.println("O onibus do tipo: " + tipo + " Está indo para a parada... "
 						+ String.valueOf(proximaParada.getId()));
+				//Parada paraEmbarcar = pista.pararEmbarcar(this.qPessoas);
+				//System.out.println("Quantidade para embarcar: "+paraEmbarcar);
 			}
 			
-		}*/
+		}
 	}
 }
