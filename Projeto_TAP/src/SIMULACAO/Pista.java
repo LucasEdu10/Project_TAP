@@ -12,12 +12,12 @@ public class Pista {
 		return this.paradas.get(paradaAtual.getId() + 1);
 	}
 
-	public int pararEmbarcar(Parada paradaAtual) {
-		if(paradaAtual.getId() == 1) {
-			Onibus.setqPessoas(pass.nextInt(38));
-			
+	public Onibus pararEmbarcar(Onibus id, Onibus qPassageiros) {
+		if(this.equals(id) == 0) {
+			int qtd = pass.nextInt(38);
+			qPassageiros = Onibus.this.setqPessoas(4);
 		}
-		return 0;
+		return qPassageiros;
 	}
 
 	public void deixarParada() {

@@ -2,22 +2,29 @@ package SIMULACAO;
 
 public class Onibus implements Runnable {
 
-	private Parada qPessoas;
+	private Onibus qPessoas;
 	private String tipo;
 	int temp;
 	private Parada parada;
 	Pista pista;
+	private int id;
 
-	public Onibus(String tipo, Parada qPessoas, Pista pista, Parada parada) {
+	public Onibus(int id, String tipo, Onibus qPessoas, Pista pista, Parada parada) {
+		this.setId(id);
 		this.tipo = tipo;
 		this.qPessoas = qPessoas;
 		this.pista = pista;
 		this.parada = parada;
 	}
-
-	public void paradaOn(Parada parada) {
-		this.parada = parada;
+	
+	public int getId() {
+		return id;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 
 	public Parada getParada() {
 		return parada;
@@ -35,11 +42,11 @@ public class Onibus implements Runnable {
 		this.tipo = tipo;
 	}
 
-	public Parada getqPessoas() {
+	public Onibus getqPessoas() {
 		return qPessoas;
 	}
 	
-	public void setqPessoas(Parada qPessoas) {
+	public void setqPessoas(Onibus qPessoas) {
 		this.qPessoas = qPessoas;
 	}
 
@@ -53,8 +60,8 @@ public class Onibus implements Runnable {
 				proximaParada.getId();
 				System.out.println("O onibus do tipo: " + tipo + " Está indo para a parada... "
 						+ String.valueOf(proximaParada.getId()));
-				//Parada paraEmbarcar = pista.pararEmbarcar(this.qPessoas);
-				//System.out.println("Quantidade para embarcar: "+paraEmbarcar);
+				//Onibus paraEmbarcar = pista.pararEmbarcar(this.qPessoas);
+				System.out.println("Quantidade para embarcar: "+pista.pararEmbarcar(id,this.qPessoas));
 			}
 			
 		}

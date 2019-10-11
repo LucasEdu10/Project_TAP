@@ -2,13 +2,13 @@ package SIMULACAO;
 
 public class Parada {
 
-	int passageiros;
+	private Onibus passageiros;
 	String tipoParada;
 	private int id;
 
 	public Parada() {}
 	
-	public Parada(int id, int passageiros, String tipoParada) {
+	public Parada(int id, Onibus passageiros, String tipoParada) {
 		this.id = id;
 		this.passageiros = passageiros;
 		this.tipoParada = tipoParada;
@@ -20,5 +20,13 @@ public class Parada {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Onibus getPassageiros() {
+		return passageiros;
+	}
+
+	public void setPassageiros(Onibus passageiros) {
+		this.passageiros = passageiros;
 	}
 }
