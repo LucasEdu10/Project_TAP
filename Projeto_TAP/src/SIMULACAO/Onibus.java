@@ -2,29 +2,46 @@ package SIMULACAO;
 
 public class Onibus implements Runnable {
 
-	private Onibus qPessoas;
+	private int capMax;
 	private String tipo;
 	int temp;
 	private Parada parada;
 	Pista pista;
-	private int id;
+	private int idOn;
+	private Parada id;
+	private Parada qPassageiros;
 
-	public Onibus(int id, String tipo, Onibus qPessoas, Pista pista, Parada parada) {
-		this.setId(id);
+	public Onibus(int idOn, String tipo, int capMax, Pista pista, Parada parada) {
+		this.idOn = idOn;
 		this.tipo = tipo;
-		this.qPessoas = qPessoas;
+		this.capMax = capMax;
 		this.pista = pista;
 		this.parada = parada;
 	}
-	
-	public int getId() {
+
+	public Parada getPassageiros() {
+		return qPassageiros;
+	}
+
+	public void setPassageiros(Parada qPassageiros) {
+		this.qPassageiros = qPassageiros;
+	}
+
+	public int getIdOn() {
+		return idOn;
+	}
+
+	public void setIdOn(int idOn) {
+		this.idOn = idOn;
+	}
+
+	public Parada getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Parada id) {
 		this.id = id;
 	}
-	
 
 	public Parada getParada() {
 		return parada;
@@ -42,28 +59,27 @@ public class Onibus implements Runnable {
 		this.tipo = tipo;
 	}
 
-	public Onibus getqPessoas() {
-		return qPessoas;
+	public int getcapMax() {
+		return capMax;
 	}
-	
-	public void setqPessoas(Onibus qPessoas) {
-		this.qPessoas = qPessoas;
+
+	public void setcapMax(int capMax) {
+		this.capMax = capMax;
 	}
 
 	@Override
 	public void run() {
 		System.out.println(tipo + " Onibus partindo...");
-		for (int p = this.parada.getId(); p < this.pista.paradas.size()-1; p++) {
+		for (int p = this.parada.getId(); p < this.pista.paradas.size() - 1; p++) {
 			this.parada.setId(p);
 			Parada proximaParada = pista.proximaParada(this.parada);
 			synchronized (proximaParada) {
 				proximaParada.getId();
 				System.out.println("O onibus do tipo: " + tipo + " Está indo para a parada... "
 						+ String.valueOf(proximaParada.getId()));
-				//Onibus paraEmbarcar = pista.pararEmbarcar(this.qPessoas);
-				System.out.println("Quantidade para embarcar: "+pista.pararEmbarcar(id,this.qPessoas));
 			}
-			
 		}
+		Parada pessoas = pista.pararEmbarcar(this.qPassageiros);
+		System.out.println("Numero: "+pessoas);
 	}
 }
