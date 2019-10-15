@@ -80,6 +80,6 @@ public class Onibus implements Runnable {
 			}
 		}
 		Parada pessoas = pista.pararEmbarcar(this.qPassageiros);
-		System.out.println("Numero: "+pessoas);
+		System.out.println("Numero: " + pessoas);
 	}
 }

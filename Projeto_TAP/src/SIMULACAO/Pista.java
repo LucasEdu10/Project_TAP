@@ -12,7 +12,7 @@ public class Pista {
 	}
 
 	public Parada pararEmbarcar(Parada qPassageiros) {
-		qPassageiros.pass.nextInt();
+		qPassageiros.subir();
 		return qPassageiros;
 	}
 
