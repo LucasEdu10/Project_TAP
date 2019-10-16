@@ -15,6 +15,8 @@ public class CorredorOnibus {
 		pista.adicionarParada(parada3);
 		//pista.adicionarParada(parada4);
 		
+		//pista.pararEmbarcar(0);
+		
 		Onibus B1 = new Onibus(1, "Micro", 8, pista, parada1);
 		Onibus B2 = new Onibus(2, "Medio", 30, pista, parada1);
 

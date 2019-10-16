@@ -9,7 +9,7 @@ public class Onibus implements Runnable {
 	Pista pista;
 	private int idOn;
 	private Parada id;
-	private Parada qPassageiros;
+	private int qPassageiros;
 
 	public Onibus(int idOn, String tipo, int capMax, Pista pista, Parada parada) {
 		this.idOn = idOn;
@@ -19,11 +19,11 @@ public class Onibus implements Runnable {
 		this.parada = parada;
 	}
 
-	public Parada getPassageiros() {
+	public int getPassageiros() {
 		return qPassageiros;
 	}
 
-	public void setPassageiros(Parada qPassageiros) {
+	public void setPassageiros(int qPassageiros) {
 		this.qPassageiros = qPassageiros;
 	}
 
@@ -79,7 +79,10 @@ public class Onibus implements Runnable {
 						+ String.valueOf(proximaParada.getId()));
 			}
 		}
-		Parada pessoas = pista.pararEmbarcar(this.qPassageiros);
-		System.out.println("Numero: " + pessoas);
+		int pessoas = pista.pararEmbarcar(this.qPassageiros);
+		System.out.println("Numero: " + pessoas +"<<<<<<<");
+		//System.out.println(tipo+" Numero aleatorio: "+pista.subirAle(capMax));
+		System.out.println("Numero: "+parada.subirAle(capMax));
+		System.out.println("Parada numero: "+pista.pararEmbarcar(capMax));
 	}
 }

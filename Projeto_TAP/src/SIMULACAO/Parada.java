@@ -34,10 +34,11 @@ public class Parada {
 		this.passageiros = passageiros;
 	}
 	
-	public int subir() {
-		pass.nextInt(38);
-		return getPassageiros();
+	public int subirAle(int pessoas) {
+		pessoas = pass.nextInt(pessoas);
+		return pessoas;
 	}
+	
 	public int descer(int c) {
 		return c;
 	}
