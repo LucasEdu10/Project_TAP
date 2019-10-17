@@ -9,7 +9,7 @@ public class Onibus implements Runnable {
 	Pista pista;
 	private int idOn;
 	private Parada id;
-	private int qPassageiros;
+	private Parada qPassageiros;
 
 	public Onibus(int idOn, String tipo, int capMax, Pista pista, Parada parada) {
 		this.idOn = idOn;
@@ -19,11 +19,11 @@ public class Onibus implements Runnable {
 		this.parada = parada;
 	}
 
-	public int getPassageiros() {
+	public Parada getPassageiros() {
 		return qPassageiros;
 	}
 
-	public void setPassageiros(int qPassageiros) {
+	public void setPassageiros(Parada qPassageiros) {
 		this.qPassageiros = qPassageiros;
 	}
 
@@ -73,16 +73,21 @@ public class Onibus implements Runnable {
 		for (int p = this.parada.getId(); p < this.pista.paradas.size() - 1; p++) {
 			this.parada.setId(p);
 			Parada proximaParada = pista.proximaParada(this.parada);
+			Parada embarcar = pista.pararEmbarcar(this.parada);
 			synchronized (proximaParada) {
 				proximaParada.getId();
 				System.out.println("O onibus do tipo: " + tipo + " Está indo para a parada... "
 						+ String.valueOf(proximaParada.getId()));
+				System.out.println("Parada numero "+String.valueOf(proximaParada.getId()+" aqui: "+embarcar.getPassageiros())); //Tentei pegar a quantidade de passageiros pelo get 
 			}
 		}
-		int pessoas = pista.pararEmbarcar(this.qPassageiros);
-		System.out.println("Numero: " + pessoas +"<<<<<<<");
+
+		//System.out.println("Parada numero "+String.valueOf(proximaParada.getId()+"aqui: "+pista.pararEmbarcar(parada));
+	//	int pessoas = pista.pararEmbarcar(this.qPassageiros);
+		//System.out.println("Numero: " + pessoas +"<<<<<<<");
 		//System.out.println(tipo+" Numero aleatorio: "+pista.subirAle(capMax));
-		System.out.println("Numero: "+parada.subirAle(capMax));
-		System.out.println("Parada numero: "+pista.pararEmbarcar(capMax));
+		//System.out.println("Numero: "+parada.subirAle(capMax));
+		//System.out.println("Parada numero: "+pista.pararEmbarcar(qPassageiros));
+		
 	}
 }

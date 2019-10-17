@@ -6,7 +6,7 @@ public class Parada {
 	
 	Random pass = new Random();
 
-	private int passageiros = 1;
+	private int passageiros;
 	String tipoParada;
 	private int id;
 

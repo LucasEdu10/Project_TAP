@@ -14,9 +14,13 @@ public class Pista {
 		return this.paradas.get(paradaAtual.getId() + 1);
 	}
 
-	public int pararEmbarcar(int qPassageiros) {
-		qPessoas.add(qPassageiros);
-		qPassageiros = subirAle(qPassageiros) + pass.nextInt(38); //Se eu comentar o segundo PASS ele deixa os valores de Onibus zerados
+	public Parada pararEmbarcar(Parada qPassageiros) {
+		/*qPessoas.add(qPassageiros);
+		qPassageiros = subirAle(qPassageiros); //+ pass.nextInt(qPassageiros); //Se eu comentar o segundo PASS ele deixa os valores de Onibus zerados
+		return qPassageiros;*/
+		
+		//Parada proximaParada = proximaParada(qPassageiros);
+		//System.out.println("Parada numero aqui: "+ String.valueOf(proximaParada.getPassageiros()));
 		return qPassageiros;
 	}
 
