@@ -6,7 +6,7 @@ public class Parada {
 	
 	Random pass = new Random();
 
-	private int passageiros;
+	static private int passageiros;
 	String tipoParada;
 	private int id;
 
@@ -14,7 +14,7 @@ public class Parada {
 	
 	public Parada(int id, int passageiros, String tipoParada) {
 		this.id = id;
-		this.passageiros = passageiros;
+		Parada.passageiros = passageiros;
 		this.tipoParada = tipoParada;
 	}
 
@@ -26,17 +26,16 @@ public class Parada {
 		this.id = id;
 	}
 
-	public int getPassageiros() {
+	public static  int getPassageiros() {
 		return passageiros;
 	}
 
 	public void setPassageiros(int passageiros) {
-		this.passageiros = passageiros;
+		Parada.passageiros = passageiros;
 	}
 	
-	public int subirAle(int pessoas) {
-		pessoas = pass.nextInt(pessoas);
-		return pessoas;
+	public int subirAle() {
+		return pass.nextInt(passageiros);
 	}
 	
 	public int descer(int c) {

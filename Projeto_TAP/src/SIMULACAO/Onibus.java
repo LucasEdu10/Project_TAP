@@ -2,10 +2,10 @@ package SIMULACAO;
 
 public class Onibus implements Runnable {
 
-	private int capMax;
+	static private int capMax;
 	private String tipo;
 	int temp;
-	private Parada parada;
+	static private Parada parada;
 	Pista pista;
 	private int idOn;
 	private Parada id;
@@ -14,10 +14,15 @@ public class Onibus implements Runnable {
 	public Onibus(int idOn, String tipo, int capMax, Pista pista, Parada parada) {
 		this.idOn = idOn;
 		this.tipo = tipo;
-		this.capMax = capMax;
+		Onibus.capMax = capMax;
 		this.pista = pista;
-		this.parada = parada;
+		Onibus.parada = parada;
 	}
+	
+	public static Parada parada1 = new Parada(0, 1, "Parada onibus 1");
+	public static Parada parada2 = new Parada(1, 2, "Parada onibus 2");
+	public static Parada parada3 = new Parada(2, 3, "Parada onibus 3");
+	public static Parada parada4 = new Parada(3, 4, "Parada onibus 4");
 
 	public Parada getPassageiros() {
 		return qPassageiros;
@@ -48,7 +53,7 @@ public class Onibus implements Runnable {
 	}
 
 	public void setParada(Parada parada) {
-		this.parada = parada;
+		Onibus.parada = parada;
 	}
 
 	public String getTipo() {
@@ -59,35 +64,39 @@ public class Onibus implements Runnable {
 		this.tipo = tipo;
 	}
 
-	public int getcapMax() {
+	public static int getcapMax() {
 		return capMax;
 	}
 
 	public void setcapMax(int capMax) {
-		this.capMax = capMax;
+		Onibus.capMax = capMax;
 	}
 
 	@Override
 	public void run() {
 		System.out.println(tipo + " Onibus partindo...");
-		for (int p = this.parada.getId(); p < this.pista.paradas.size() - 1; p++) {
-			this.parada.setId(p);
-			Parada proximaParada = pista.proximaParada(this.parada);
-			Parada embarcar = pista.pararEmbarcar(this.parada);
-			synchronized (proximaParada) {
-				proximaParada.getId();
-				System.out.println("O onibus do tipo: " + tipo + " Está indo para a parada... "
-						+ String.valueOf(proximaParada.getId()));
-				System.out.println("Parada numero "+String.valueOf(proximaParada.getId()+" aqui: "+embarcar.getPassageiros())); //Tentei pegar a quantidade de passageiros pelo get 
+		do {
+			for (int p = Onibus.parada.getId(); p < this.pista.paradas.size()-1; p++) {
+				Onibus.parada.setId(p);
+				Parada proximaParada = pista.proximaParada(Onibus.parada);
+				int embarcar = pista.pararEmbarcar();
+				synchronized (Onibus.parada) {
+					// proximaParada.getId();
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					System.out.println("O onibus do tipo: " + tipo + " Está indo para a parada... "
+							+ String.valueOf(proximaParada.getId()) + " Com o total de " + embarcar
+							+ " Pessoas.");
+				}
+				if(embarcar > Onibus.capMax) {
+					System.out.println("O onibus do tipo "+tipo+" LOTOU!!!");
+					System.out.println();
+				}
 			}
-		}
-
-		//System.out.println("Parada numero "+String.valueOf(proximaParada.getId()+"aqui: "+pista.pararEmbarcar(parada));
-	//	int pessoas = pista.pararEmbarcar(this.qPassageiros);
-		//System.out.println("Numero: " + pessoas +"<<<<<<<");
-		//System.out.println(tipo+" Numero aleatorio: "+pista.subirAle(capMax));
-		//System.out.println("Numero: "+parada.subirAle(capMax));
-		//System.out.println("Parada numero: "+pista.pararEmbarcar(qPassageiros));
-		
+		} while (this.pista.paradas.size() < 0);
 	}
 }

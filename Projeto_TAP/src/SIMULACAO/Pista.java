@@ -10,18 +10,17 @@ public class Pista {
 	ArrayList<Parada> paradas = new ArrayList<Parada>();
 	ArrayList<Integer> qPessoas = new ArrayList<Integer>();
 
+	private Parada pessoa;
+
 	public Parada proximaParada(Parada paradaAtual) {
-		return this.paradas.get(paradaAtual.getId() + 1);
+		return this.paradas.get(paradaAtual.getId()+1);
 	}
 
-	public Parada pararEmbarcar(Parada qPassageiros) {
-		/*qPessoas.add(qPassageiros);
-		qPassageiros = subirAle(qPassageiros); //+ pass.nextInt(qPassageiros); //Se eu comentar o segundo PASS ele deixa os valores de Onibus zerados
-		return qPassageiros;*/
-		
-		//Parada proximaParada = proximaParada(qPassageiros);
-		//System.out.println("Parada numero aqui: "+ String.valueOf(proximaParada.getPassageiros()));
-		return qPassageiros;
+	public int pararEmbarcar() {
+		int pessoas = Parada.getPassageiros() + subirAle(); //quando deixo o metodo static ele só pega o valor da ultima parada "4"
+		//System.out.println(Parada.getPassageiros());//+ pessoa.subirAle();
+		return pessoas;
+		//return this.paradas.get(qPassageiros.getId());
 	}
 
 	public void deixarParada(Parada qPassageiros) {
@@ -32,8 +31,14 @@ public class Pista {
 		paradas.add(parada);
 	}
 	
-	public int subirAle(int pessoas) { // Fiz para poder gerar os numeros aleatorios de acordo com a quantidade no array
-		pessoas = qPessoas.get(pass.nextInt(qPessoas.size())); // Mas não esta funcionando normalmente 
+	public int subirAle() { // Fiz para poder gerar os numeros aleatorios de acordo com a quantidade no array
+		//pessoas = qPessoas.get(pass.nextInt(qPessoas.size())); // Mas não esta funcionando normalmente 
+		//return qPessoas.get(pass.nextInt(qPessoas.size()));
+		return pass.nextInt(38);
+	}
+	
+	public Parada passageirosAtual(Parada pessoas) {
+		//for(qPessoas)
 		return pessoas;
 	}
 }
