@@ -6,15 +6,16 @@ public class Parada {
 	
 	Random pass = new Random();
 
-	static private int passageiros;
+	private int passageiros;
 	String tipoParada;
 	private int id;
+	int total;
 
 	public Parada() {}
 	
 	public Parada(int id, int passageiros, String tipoParada) {
 		this.id = id;
-		Parada.passageiros = passageiros;
+		this.passageiros = passageiros;
 		this.tipoParada = tipoParada;
 	}
 
@@ -26,16 +27,22 @@ public class Parada {
 		this.id = id;
 	}
 
-	public static  int getPassageiros() {
+	public int getPassageiros() {
 		return passageiros;
 	}
 
 	public void setPassageiros(int passageiros) {
-		Parada.passageiros = passageiros;
+		this.passageiros = passageiros;
 	}
 	
-	public int subirAle() {
-		return pass.nextInt(passageiros);
+	public int subirAle(int passageiros) {
+		int p = pass.nextInt(passageiros);
+		if(p > Onibus.getcapMax()) {
+			System.out.println("Onibus lotado");
+		}else {
+			total = p;
+		}
+		return total;
 	}
 	
 	public int descer(int c) {
